@@ -40,5 +40,6 @@ This release includes:
 * Exec currently only allows interactive sessions with a terminal (`exec -t`), not specify commands in the command line.
 * `docker run` detaches from the container by default, even if `-d` is not specified. Logs can be seen later on with command `docker log <CONTAINER_ID>`.
 * Replicas are not supported when deploying Compose application. One container will be run for each Compose service. Several services cannot expose the same port.
-* Name resolution between Compose services is done through /etc/hosts file. Some technical stacks ignoring /etc/hosts will not be able to resolve Compose service names within a Compose application.
-* Windows Containers are not supported on ACI in multi-container compose applications.
+* Name resolution between Compose services is done using the `/etc/hosts` file. If container code ignores `/etc/hosts`, the container will not be able to resolve other Compose services in the same application.
+* With an ACI context, Compose applications can be deployed with the new command `docker compose up`. The `docker-compose` command will fail if used with ACI contexts. The error message is not explicit and needs to be improved.
+* Windows containers are not supported on ACI in multi-container Compose applications.
