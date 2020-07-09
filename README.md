@@ -52,16 +52,12 @@ with a fresh install of Ubuntu 20.04.
 You can install the new CLI using the install script:
 
 ```console
-curl -L https://github.com/docker/aci-integration-beta/releases/download/v0.1.4/install.sh | sh
+curl -L https://github.com/docker/aci-integration-beta/blob/main/scripts/install_linux.sh | sh
 ```
 
 ### Manual install
 
-You can download the Docker ACI Integration CLI using the following command:
-
-```console
-curl -Lo docker-aci https://github.com/docker/aci-integration-beta/releases/download/v0.1.4/docker-linux-amd64
-```
+You can download the Docker ACI Integration CLI from [latest release](https://github.com/docker/aci-integration-beta/releases/latest).
 
 You will then need to make it executable:
 
@@ -131,4 +127,12 @@ be done as follows:
 
 ```console
 sudo rm /usr/local/bin/docker /usr/local/bin/com.docker.cli
+```
+
+## Testing the install script
+
+To test the install script, from a machine with docker:
+
+```console
+docker build -t testclilinux -f scripts/Dockerfile-testInstall scripts
 ```
