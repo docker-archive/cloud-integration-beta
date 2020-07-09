@@ -4,8 +4,7 @@
 
 set -eu
 
-CLI_VERSION=${CLI_VERSION:-0.1.4}
-DOWNLOAD_URL="${DOWNLOAD_URL:-https://github.com/docker/aci-integration-beta/releases/download/v${CLI_VERSION}/docker-linux-amd64}"
+RELEASE_URL=https://api.github.com/repos/docker/aci-integration-beta/releases/latest
 LINK_NAME="${LINK_NAME:-com.docker.cli}"
 DRY_RUN="${DRY_RUN:-}"
 
@@ -81,9 +80,26 @@ if ! [ "$(command -v docker)" ]; then
 	exit 1
 fi
 
+download_cmd='curl -fsSLo'
+# Check that system has curl installed
+if ! [ "$(command -v curl)" ]; then
+	echo "Error: curl not found"
+	echo "Please install curl"
+	exit 1
+fi
+
+DOWNLOAD_URL=$(curl -s ${RELEASE_URL} | grep "browser_download_url.*docker-linux-amd64" | cut -d : -f 2,3)
+
 # Check if the ACI CLI is already installed
 if [ $(is_new_cli "docker") -eq 1 ]; then
-	echo "You already have the Docker ACI Integration CLI installed"
+	if [ $(is_new_cli "/usr/local/bin/docker") -eq 1 ]; then
+		echo "You already have the Docker ACI Integration CLI installed, overriding with latest version"
+		download_dir=$($sh_c 'mktemp -d')
+		$sh_c "${download_cmd} ${download_dir}/docker-aci ${DOWNLOAD_URL}"
+		$sudo_sh_c "install -m 775 ${download_dir}/docker-aci /usr/local/bin/docker"
+		exit 0
+	fi
+	echo "You already have the Docker ACI Integration CLI installed, in a different location."
 	exit 1
 fi
 
@@ -127,14 +143,6 @@ elif [ $usr_local_bin_pos -eq -1 ]; then
 elif ! [ $usr_local_bin_pos -lt $usr_bin_pos ]; then
 	echo "Error: /usr/local/bin is not ordered higher than /usr/bin in your PATH"
 	manual_install
-	exit 1
-fi
-
-download_cmd='curl -fsSLo'
-# Check that system has curl installed
-if ! [ "$(command -v curl)" ]; then
-	echo "Error: curl not found"
-	echo "Please install curl"
 	exit 1
 fi
 
