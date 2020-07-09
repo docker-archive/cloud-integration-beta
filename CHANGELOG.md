@@ -23,6 +23,20 @@ Release headlines
 [Release diff](https://github.com/docker/api/compare/<LAST TAG>...<THIS TAG>)
 -->
 
+## 0.1.7 - 2020-07-09
+
+### New features
+
+* Support for docker logs -- follow to follow logs
+* docker run ... will attach to logs by default, if the user does not specify -d
+* Support for environment variables (#11)
+* Support for CPU/Memory limits (#7)
+
+### Bug fixes
+
+* Login with azure multi-tenant accounts (#8)
+* Bug fixed deploying ACR images on Linux (#10)
+
 ## 0.1.4 - 2020-06-26
 
 First public beta release of the Docker CLI with
