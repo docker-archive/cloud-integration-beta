@@ -36,7 +36,10 @@ To learn more, take a look at the
 
 ## macOS and Windows installation
 
-The ACI integration is built into [Docker Desktop Edge](https://www.docker.com/products/docker-desktop).
+The ACI integration is built into Docker Desktop **Edge**.
+You can download it from these links:
+- [macOS](https://hub.docker.com/editions/community/docker-ce-desktop-mac)
+- [Windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows)
 
 ## Ubuntu Linux installation
 
