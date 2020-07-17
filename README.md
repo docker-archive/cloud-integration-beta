@@ -33,6 +33,7 @@ To learn more, take a look at the
   * [How do I build images?](https://github.com/docker/aci-integration-beta/issues/3)
   * [Why aren't all the existing Docker commands and flags available?](https://github.com/docker/aci-integration-beta/issues/4)
   * [Why can't I map container ports?](https://github.com/docker/aci-integration-beta/issues/5)
+  * [Is Compose v2 supported?](https://github.com/docker/aci-integration-beta/issues/24)
 
 ## macOS and Windows installation
 
