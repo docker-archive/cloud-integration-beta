@@ -56,7 +56,7 @@ with a fresh install of Ubuntu 20.04.
 You can install the new CLI using the install script:
 
 ```console
-curl -L https://github.com/docker/aci-integration-beta/blob/main/scripts/install_linux.sh | sh
+curl -L https://raw.githubusercontent.com/docker/aci-integration-beta/main/scripts/install_linux.sh | sh
 ```
 
 ### Manual install
