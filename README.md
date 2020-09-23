@@ -1,19 +1,19 @@
-# Docker ACI Integration (Beta)
+# Docker Cloud Integration (Beta)
 
 > :warning: **This CLI is in beta**: The installation process, commands, and
 > flags will change in future releases.
 
-Docker has extended its strategic collaboration with Microsoft to simplify code
+Docker has extended its strategic collaboration with Microsoft and Amazon to simplify code
 to cloud application development for developers and development teams by more
-closely integrating with Azure Container Instances (ACI).
+closely integrating with Azure Container Instances (ACI) and Amazon EC2 Container Service (ECS).
 
-The new ACI experience from local VS Code and Docker Desktop development to
-remote deployment in ACI creates a tighter integration between Docker and
-Microsoft developer technologies provides the following productivity benefits to
+The new Cloud experience from local VS Code and Docker Desktop development to
+remote deployment in ACI/ECS creates a tighter integration between Docker and
+Microsoft/Amazon developer technologies provides the following productivity benefits to
 developers:
 
 * Easily log into Azure directly from the Docker CLI
-* Trigger an ACI cloud container service environment to be set up automatically
+* Trigger an ACI/ECS cloud container service environment to be set up automatically
   with easy to use defaults and no infrastructure overhead
 * Switch from a local context to a cloud context to quickly and easily run
   applications
@@ -24,20 +24,23 @@ developers:
 
 To learn more, take a look at the
 [announcement blog post](https://www.docker.com/blog/running-a-container-in-aci-with-docker-desktop-edge/)
+[announcement blog post](https://www.docker.com/blog/from-docker-straight-to-aws/)
 
 ## FAQ
 
-* [Where's the source code?](https://github.com/docker/aci-integration-beta/issues/1)
+* [Where's the source code?](https://github.com/docker/cloud-integration-beta/issues/1)
 * When using an ACI context:
-  * [Why can't I list images?](https://github.com/docker/aci-integration-beta/issues/2)
-  * [How do I build images?](https://github.com/docker/aci-integration-beta/issues/3)
-  * [Why aren't all the existing Docker commands and flags available?](https://github.com/docker/aci-integration-beta/issues/4)
-  * [Why can't I map container ports?](https://github.com/docker/aci-integration-beta/issues/5)
-  * [Is Compose v2 supported?](https://github.com/docker/aci-integration-beta/issues/24)
+  * [Why can't I list images?](https://github.com/docker/cloud-integration-beta/issues/2)
+  * [How do I build images?](https://github.com/docker/cloud-integration-beta/issues/3)
+  * [Why aren't all the existing Docker commands and flags available?](https://github.com/docker/cloud-integration-beta/issues/4)
+  * [Why can't I map container ports?](https://github.com/docker/cloud-integration-beta/issues/5)
+  * [Is Compose v2 supported?](https://github.com/docker/cloud-integration-beta/issues/24)
+* When using an ECS context:  
+  * ECS integration was previously hosted on [docker/ecs-plugin](https://github.com/docker/ecs-plugin)
 
 ## macOS and Windows installation
 
-The ACI integration is built into Docker Desktop **Edge**.
+The Cloud integration is built into Docker Desktop **Edge**.
 You can download it from these links:
 - [macOS](https://hub.docker.com/editions/community/docker-ce-desktop-mac)
 - [Windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows)
@@ -56,17 +59,17 @@ with a fresh install of Ubuntu 20.04.
 You can install the new CLI using the install script:
 
 ```console
-curl -L https://raw.githubusercontent.com/docker/aci-integration-beta/main/scripts/install_linux.sh | sh
+curl -L https://raw.githubusercontent.com/docker/cloud-integration-beta/main/scripts/install_linux.sh | sh
 ```
 
 ### Manual install
 
-You can download the Docker ACI Integration CLI from [latest release](https://github.com/docker/aci-integration-beta/releases/latest).
+You can download the Docker ACI Integration CLI from [latest release](https://github.com/docker/cloud-integration-beta/releases/latest).
 
 You will then need to make it executable:
 
 ```console
-chmod +x docker-aci
+chmod +x docker-cloud
 ```
 
 To enable using the local Docker Engine and to use existing Docker contexts, you
@@ -98,7 +101,7 @@ You can verify that this is working by checking that the new CLI works with the
 default context:
 
 ```console
-$ ./docker-aci --context default ps
+$ ./docker --context default ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 $ echo $?
 0
@@ -119,7 +122,7 @@ $ which docker
 /usr/local/bin/docker
 $ docker version
 ...
- Azure integration  0.1.4
+ Cloud integration  0.1.4
 ...
 ```
 
