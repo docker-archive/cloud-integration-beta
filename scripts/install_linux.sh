@@ -88,7 +88,7 @@ if ! [ "$(command -v curl)" ]; then
 	exit 1
 fi
 
-DOWNLOAD_URL=$(curl -s ${RELEASE_URL} | grep "browser_download_url.*docker-linux-amd64" | cut -d : -f 2,3)
+DOWNLOAD_URL=$(curl -sL ${RELEASE_URL} | grep "browser_download_url.*docker-linux-amd64" | cut -d : -f 2,3)
 
 # Check if the ACI CLI is already installed
 if [ $(is_new_cli "docker") -eq 1 ]; then
